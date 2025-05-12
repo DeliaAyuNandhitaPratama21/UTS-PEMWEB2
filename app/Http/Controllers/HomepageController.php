@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Product;
 use App\Models\Categories;
 
 class HomepageController extends Controller
@@ -20,10 +20,12 @@ class HomepageController extends Controller
 
     public function products()
     {
+        $products = Product::paginate(10);
         $title = "Products";
 
         return view('web.products',[
-            'title'=>$title
+            'title'=>$title,
+            'products'=>$products
         ]);
     }
 
